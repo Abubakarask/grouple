@@ -1,5 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
+const helmet = require("helmet");
 const router = require("./routes/routes");
 require("./db/sequelize");
 
@@ -9,6 +11,8 @@ const app = express();
 
 // middlewares
 app.use(express.json());
+app.use(cookieParser());
+app.use(helmet())
 
 // Using Routes
 app.use("/api", router);

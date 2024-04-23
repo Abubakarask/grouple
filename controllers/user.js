@@ -135,7 +135,7 @@ exports.signin = async (req, res) => {
 
 exports.myProfile = async (req, res) => {
   try {
-    const mobile = req.body.data;
+    const mobile = req.user.mobile;
     const user = await User.findOne({
       where: {
         mobile,
