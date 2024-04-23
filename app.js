@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const router = require("./routes/routes");
+require("./db/sequelize");
 
 dotenv.config();
 
