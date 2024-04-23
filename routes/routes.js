@@ -1,4 +1,5 @@
 const express = require("express");
+const { signup, signin, myProfile, signout } = require("../controllers/user");
 
 const router = new express.Router();
 
@@ -15,5 +16,11 @@ router.get("/", async (req, res) => {
     });
   }
 });
+
+//User APIs
+router.route("/auth/signup").post(signup);
+router.route("/auth/signin").post(signin);
+router.route("/auth/me").get(myProfile);
+router.route("/auth/signout").get(signout);
 
 module.exports = router;
