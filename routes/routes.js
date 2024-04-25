@@ -5,6 +5,7 @@ const {
   createBooking,
   updateBooking,
   getSingleBooking,
+  getAllBookings,
 } = require("../controllers/booking");
 
 const router = new express.Router();
@@ -32,6 +33,8 @@ router.route("/auth/signout").get(isAuthenticated, signout);
 //Booking APIs
 router.route("/booking/create").post(isAuthenticated, createBooking);
 router.route("/booking/update").post(isAuthenticated, updateBooking);
-router.route("/booking/:publicId").get(isAuthenticated, getSingleBooking);
+// router.route("/booking/:publicId").get(isAuthenticated, getSingleBooking);
+router.route("/booking/list").get(isAuthenticated, getAllBookings);
+
 
 module.exports = router;
