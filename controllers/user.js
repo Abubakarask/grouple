@@ -73,11 +73,11 @@ exports.signup = async (req, res) => {
 
 exports.signin = async (req, res) => {
   try {
-    const { mobile, password } = req.body.data;
+    const { email, password } = req.body.data;
 
     const user = await User.findOne({
       where: {
-        mobile,
+        email,
       },
     });
 
@@ -86,7 +86,7 @@ exports.signin = async (req, res) => {
         success: false,
         errors: [
           {
-            param: "mobile",
+            param: "email",
             message: "User does not exist",
             code: "DO_NOT_EXIST",
           },

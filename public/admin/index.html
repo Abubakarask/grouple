@@ -2,24 +2,107 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin - Communication</title>
-    <link rel="stylesheet" href="styles.css" />
+    <script src="index.js" defer></script>
+    <title>Login</title>
   </head>
+
   <body>
-    <h1>Admin Panel</h1>
-    <div id="room-list-container">
-      <h2>Active Rooms</h2>
-      <ul id="room-list"></ul>
+    <div class="main-container">
+      <div id="login-signup-container" class="login-signup-container">
+        <h2 class="title">Chat with Grouple Employee</h2>
+        <hr class="divider" />
+      </div>
     </div>
-    <div id="message-container">
-      <h2>Messages</h2>
-      <p id="current-room"></p>
-      <div id="messages"></div>
-      <input type="text" id="message-input" placeholder="Enter message" />
-      <button id="send-message">Send</button>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
-    <script src="script.js"></script>
+
+    <template id="login-form-template">
+      <form id="login-form">
+        <div class="fields">
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              placeholder="Email"
+              autocomplete="off"
+              required
+            />
+          </div>
+
+          <div>
+            <label>Password:</label>
+            <input
+              type="password"
+              placeholder="Password"
+              minlength="8"
+              autocomplete="off"
+              required
+            />
+          </div>
+        </div>
+
+        <button class="login-signup-button" type="button">Sign Up</button>
+        <button class="login-login-button" type="submit">Login</button>
+      </form>
+    </template>
+
+    <template id="signup-form-template">
+      <form id="signup-form">
+        <div class="fields">
+          <div>
+            <label>First Name:</label>
+            <input
+              type="text"
+              placeholder="First Name"
+              autocomplete="off"
+              required
+            />
+          </div>
+
+          <div>
+            <label>Last Name:</label>
+            <input
+              type="text"
+              placeholder="Last Name"
+              autocomplete="off"
+              required
+            />
+          </div>
+
+          <div>
+            <label>Username:</label>
+            <input
+              type="text"
+              placeholder="Username"
+              autocomplete="off"
+              required
+            />
+          </div>
+
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              placeholder="Email"
+              autocomplete="off"
+              required
+            />
+          </div>
+
+          <div>
+            <label>Password:</label>
+            <input
+              type="password"
+              placeholder="Password"
+              autocomplete="off"
+              required
+            />
+          </div>
+        </div>
+
+        <button class="signup-cancel-button" type="button">Cancel</button>
+        <button class="signup-signup-button" type="submit">Sign Up</button>
+      </form>
+    </template>
   </body>
 </html>
