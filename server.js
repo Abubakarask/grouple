@@ -1,8 +1,13 @@
-const express = require("express");
+const http = require("http");
 const app = require("./app");
+const initiateSocketio = require("./socketio");
 
-const PORT = process.env.PORT || 3000;
+let server = http.createServer(app);
+const PORT = process.env.PORT || 3600;
 
-app.listen(PORT, () => {
+// create a server and initiate socketio
+initiateSocketio(server);
+
+server.listen(PORT, () => {
   console.log(`Server is working on port ${PORT}...`);
 });
