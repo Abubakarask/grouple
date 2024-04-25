@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
@@ -9,10 +10,12 @@ dotenv.config();
 
 const app = express();
 
+
 // middlewares
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
-app.use(helmet())
+app.use(helmet());
 
 // Using Routes
 app.use("/api", router);
