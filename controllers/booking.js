@@ -3,6 +3,7 @@ const Booking = require("../db/models/booking");
 const User = require("../db/models/user");
 const { padCount } = require("../utils/padCount");
 const { getAllBookingsService } = require("../services/booking");
+const { emitBookingUpdates } = require("../utils/checkBookingUpdates");
 
 exports.createBooking = async (req, res) => {
   try {
@@ -106,6 +107,8 @@ exports.createBooking = async (req, res) => {
       endTime,
       duration: durationInHours,
     });
+
+    emitBookingUpdates(newBooking.userId);
 
     res.status(200).json({
       success: true,
@@ -323,12 +326,12 @@ exports.getAllBookings = async (req, res) => {
     if (result && result.success === true) {
       res.status(200).json({
         success: true,
-        content: result.content
+        content: result.content,
       });
     } else {
       return res.status(400).json({
         success: false,
-        errors: "Something went wrong while fetching bookings"
+        errors: "Something went wrong while fetching bookings",
       });
     }
   } catch (error) {

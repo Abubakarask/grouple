@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Bookings</title>
+    <style>
+      /* Basic styling for the page */
+      body {
+        font-family: sans-serif;
+        margin: 20px;
+      }
+      .booking-list {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 15px;
+      }
+      .booking-list h3 {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My Bookings</h1>
+    <div id="bookings-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="booking.js"></script>
+  </body>
+</html>
