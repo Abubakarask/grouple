@@ -261,7 +261,8 @@ exports.deleteBooking = async (req, res) => {
       });
     }
 
-    await bookingRecord.destroy();
+    bookingRecord.deletedAt = new Date();
+    await bookingRecord.save();
 
     res.status(200).json({
       success: true,

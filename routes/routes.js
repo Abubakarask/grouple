@@ -38,6 +38,4 @@ router.route("/booking/:publicId").get(isAuthenticated, getSingleBooking);
 router.route("/booking/delete").post(isAuthenticated, deleteBooking);
 router.route("/bookings/list").get(isAuthenticated, getAllBookings);
 
-
-
 module.exports = router;
