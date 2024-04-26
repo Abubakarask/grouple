@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const Booking = require("../db/models/booking");
 const User = require("../db/models/user");
 const { padCount } = require("../utils/padCount");
@@ -59,6 +60,30 @@ exports.createBooking = async (req, res) => {
             code: "INVALID_INFO",
           },
         ],
+      });
+    }
+
+    // Check MAX_COUNT from environment variable
+    const maxBookingCount = parseInt(process.env.MAX_BOOKING, 10);
+
+    // Check availability for the requested time slot
+    const existingBookings = await Booking.findAndCountAll({
+      where: {
+        startTime: {
+          [Op.lte]: endTime,
+        },
+        endTime: {
+          [Op.gte]: startTime,
+        },
+      },
+    });
+
+    if (existingBookings.count + noOfUsers > maxBookingCount) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Room is not available for the requested time slot. Maximum booking count reached.",
+        code: "NOT_AVAILABLE",
       });
     }
 
