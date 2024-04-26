@@ -33,8 +33,8 @@ PS: Unzip the file if you have zipped folder of the project.
 ### iii) Add tables in your sql server/workbench
 
     These are few options to add tables in sql server/workbench:
-     - Option 1: Uncomment Line 21 - 28 from db.sequelize.js and start the server to migrate and create tables automatically.
-     - Option 2: Paste the SQL query commands from sql_queries.txt file to create tables.
+     - Option 1: Import the SQL dumps in mysql to create and add mock data in your db.
+     - Option 2: Uncomment Line 21 - 28 from db.sequelize.js and start the server to migrate and create tables automatically.
      - Option 3:
         - Install Sequelize CLI:
             ```npm install --save-dev sequelize-cli```
