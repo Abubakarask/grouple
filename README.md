@@ -47,8 +47,16 @@ PS: Unzip the file if you have zipped folder of the project.
                 To apply these migrations and create the corresponding tables in your MySQL database, run the following command:
                 ```npx sequelize-cli db:migrate```
 
-### iv) Export Postman from folder Postman to get all the APIs.
+### iv) Import Postman from folder Postman to get(test) all the APIs.
 
 ## Step3: Start Project
 
 ### Start the project with `npm run dev`.
+
+## Task2: Real Time Communication
+This project can be extended to include real-time communication between users and admins. To test this functionality, open the following URLs in separate browser tabs:
+
+- User Interface: http://localhost:3600/user/
+- Admin Interface: http://localhost:3600/admin/
+
+Note: Make sure to replace http://localhost:3600 with the actual URL if it's different in your setup. Also change the url in [line-13] of public/admin/index.js
