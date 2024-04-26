@@ -234,6 +234,51 @@ exports.getSingleBooking = async (req, res) => {
   }
 };
 
+exports.deleteBooking = async (req, res) => {
+  try {
+    const { publicId } = req.query;
+
+    if (!publicId) {
+      return res.status(400).json({
+        status: false,
+        errors: [
+          {
+            param: "publicId",
+            message: "Please provide a valid booking ID",
+            code: "INVALID_ID",
+          },
+        ],
+      });
+    }
+
+    const bookingRecord = await Booking.findOne({ where: { publicId } });
+
+    if (!bookingRecord) {
+      return res.status(404).json({
+        status: false,
+        message: "Booking not found",
+        code: "NOT_FOUND",
+      });
+    }
+
+    await bookingRecord.destroy();
+
+    res.status(200).json({
+      success: true,
+      message: "Booking deleted successfully",
+      content: {
+        data: bookingRecord,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 exports.getAllBookings = async (req, res) => {
   try {
     const { sort = "createdAt:DESC", page = 1, limit = 10 } = req.query;

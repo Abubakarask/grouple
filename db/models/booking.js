@@ -52,6 +52,11 @@ const Booking = sequelize.define("booking", {
     allowNull: false,
     defaultValue: DataTypes.NOW,
   },
+  deletedAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    defaultValue: null
+  }
 });
 
 module.exports = Booking;
