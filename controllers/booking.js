@@ -2,6 +2,7 @@ const { Op } = require("sequelize");
 const Booking = require("../db/models/booking");
 const User = require("../db/models/user");
 const { padCount } = require("../utils/padCount");
+const { getAllBookingsService } = require("../services/booking");
 
 exports.createBooking = async (req, res) => {
   try {
@@ -308,36 +309,28 @@ exports.deleteBooking = async (req, res) => {
 exports.getAllBookings = async (req, res) => {
   try {
     const { sort = "createdAt:DESC", page = 1, limit = 10 } = req.query;
-
-    const filter = {};
+    let userId;
 
     if (req.user.role === "user") {
-      filter.userId = req.user.id;
+      userId = req.user.id;
     }
 
-    // Calculate offset for pagination
-    const offset = (parseInt(page) - 1) * limit;
+    const result = await getAllBookingsService(
+      { sort, page, limit, userId },
+      req.user.role
+    );
 
-    const bookings = await Booking.findAndCountAll({
-      where: filter,
-      order: [[sort.split(":")[0], sort.split(":")[1]]], // Parse sort criteria
-      limit: parseInt(limit),
-      offset,
-    });
-
-    const totalPages = Math.ceil(bookings.count / limit);
-
-    res.status(200).json({
-      success: true,
-      content: {
-        data: bookings.rows, // Extract bookings data
-        meta: {
-          sort,
-          page,
-          totalPages,
-        },
-      },
-    });
+    if (result && result.success === true) {
+      res.status(200).json({
+        success: true,
+        content: result.content
+      });
+    } else {
+      return res.status(400).json({
+        success: false,
+        errors: "Something went wrong while fetching bookings"
+      });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).json({
