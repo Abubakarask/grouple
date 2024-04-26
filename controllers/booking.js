@@ -108,6 +108,7 @@ exports.createBooking = async (req, res) => {
       duration: durationInHours,
     });
 
+    // call function to emit on update-bookings to have real time updation of bookings on user side
     emitBookingUpdates(newBooking.userId);
 
     res.status(200).json({

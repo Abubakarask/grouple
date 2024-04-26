@@ -10,6 +10,7 @@ const getUserId = () => {
     userId = userData.id;
   } else {
     alert("Please login first");
+    window.location.href = "../index.html";
   }
 };
 
